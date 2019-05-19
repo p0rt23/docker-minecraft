@@ -2,6 +2,7 @@ node {
     def port           
     def container_name
     def image_tag
+    def restart
 
     // https://www.minecraft.net/en-us/download/server/
     def image_name     = 'minecraft'
@@ -12,11 +13,14 @@ node {
         image_tag      = version
         container_name = image_name
         port           = 25565
+        restart        = "always"
+        
     }
     else {
         image_tag      = "${version}-develop"
         container_name = "${image_name}-develop" 
         port           = 25566
+        restart        = "no"
     }
 
     world_volume   = "${container_name}-world"
@@ -39,7 +43,7 @@ node {
         sh """
             docker run \
                 -d \
-                --restart always \
+                --restart ${restart} \
                 --name ${container_name} \
                 -v /home/docker/volumes/${world_volume}:/opt/${image_name}/world \
                 -v /home/docker/volumes/${backups_volume}:/opt/${image_name}/backups \
