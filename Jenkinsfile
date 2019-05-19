@@ -44,7 +44,7 @@ node {
                 -v /home/docker/volumes/${world_volume}:/opt/${image_name}/world \
                 -v /home/docker/volumes/${backups_volume}:/opt/${image_name}/backups \
                 -p ${port}:25565 \
-                p0rt23/${image_name}:${tag}
+                p0rt23/${image_name}:${image_tag}
         """
     }
 }
