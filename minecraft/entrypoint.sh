@@ -4,6 +4,4 @@
 
 trap /opt/minecraft/server-stop.sh SIGINT SIGTERM
 
-while sleep 1; do
-    tmux list-sessions 
-done
+tail -f /opt/minecraft/logs/latest.log
