@@ -16,4 +16,4 @@ RUN mkdir backups &&\
 
 EXPOSE 25565
 VOLUME ["./world", "./backups"]
-ENTRYPOINT["./server-start.sh"]
+ENTRYPOINT ["./server-start.sh"]
