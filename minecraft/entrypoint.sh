@@ -4,4 +4,6 @@
 
 trap /opt/minecraft/server-stop.sh SIGINT SIGTERM
 
+sleep 5
+
 tail -f /opt/minecraft/logs/latest.log
