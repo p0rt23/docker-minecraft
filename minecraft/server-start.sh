@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # https://www.minecraft.net/en-us/download/server/
 # java -Xmx1024 -Xms1024 -jar server.jar nogui
