@@ -11,8 +11,7 @@ COPY ./${SERVER_FILE} /${WORKING}/
 COPY ./minecraft/* /${WORKING}/
 
 RUN mkdir backups &&\
-    chmod +x /${WORKING}/*.sh &&\
-    crontab crontab.txt 
+    chmod +x /${WORKING}/*.sh
 
 EXPOSE 25565
 VOLUME ["./world", "./backups"]
