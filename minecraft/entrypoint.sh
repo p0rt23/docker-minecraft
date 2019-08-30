@@ -2,7 +2,7 @@
 
 /opt/minecraft/run-command start
 
-trap /opt/minecraft/run-command stop SIGINT SIGTERM
+trap "/opt/minecraft/run-command stop" SIGINT SIGTERM
 
 sleep 5
 
