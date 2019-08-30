@@ -1,8 +1,8 @@
 #!/bin/sh
 
-/opt/minecraft/server-start.sh
+/opt/minecraft/run-command start
 
-trap /opt/minecraft/server-stop.sh SIGINT SIGTERM
+trap /opt/minecraft/run-command stop SIGINT SIGTERM
 
 sleep 5
 

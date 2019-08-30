@@ -8,7 +8,7 @@ container_dir="/opt/minecraft/world"
 find $local_dir -type f -mtime +7 -name '*.gz' -exec rm -- '{}' \;
 
 # Turn off server autosaving, and save all data:
-docker exec $container sh -c "/opt/minecraft/command save-off"
+docker exec $container sh -c "/opt/minecraft/run-command save-off"
 sleep 5
 
 docker run \
@@ -19,4 +19,4 @@ docker run \
     ash -c "cd $container_dir && tar -czvf /backup/$container_$(date '+%Y-%m-%d_%H-%M-%S').tar.gz ."
 
 # Turn server autosaving back on:
-docker exec $container sh -c "/opt/minecraft/command save-on"
+docker exec $container sh -c "/opt/minecraft/run-command save-on"
