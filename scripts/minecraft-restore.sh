@@ -1,6 +1,6 @@
 #!/bin/bash
 
-container="minecraft"
+container="minecraft-develop"
 local_dir="/home/docker/backups/minecraft"
 container_dir="/opt/minecraft/world"
 

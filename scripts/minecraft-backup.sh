@@ -1,6 +1,6 @@
 #!/bin/bash
 
-container="minecraft"
+container="minecraft-develop"
 local_dir="/home/docker/backups/minecraft"
 container_dir="/opt/minecraft/world"
 
@@ -16,7 +16,7 @@ docker run \
     --volumes-from $container \
     -v $local_dir:/backup \
     alpine \
-    ash -c "cd $container_dir && tar -czvf /backup/$container_$(date '+%Y-%m-%d_%H-%M-%S').tar.gz ."
+    ash -c "cd $container_dir && tar -czvf /backup/${container}_$(date '+%Y-%m-%d_%H-%M-%S').tar.gz ."
 
 # Turn server autosaving back on:
 docker exec $container sh -c "/opt/minecraft/run-command save-on"
