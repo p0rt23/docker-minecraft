@@ -15,7 +15,7 @@ node {
         port           = 25565
         restart        = "always"
         docker_cmd     = "run"
-        
+        detatched      = "-d"
     }
     else {
         image_tag      = "${version}-develop"
@@ -23,6 +23,7 @@ node {
         port           = 25566
         restart        = "no"
         docker_cmd     = "create"
+        detatched      = ""
     }
 
     world_volume = "${container_name}-world"
@@ -43,7 +44,7 @@ node {
         }
         sh """
             docker ${docker_cmd} \
-                -d \
+                ${detatched} \
                 --restart ${restart} \
                 --name ${container_name} \
                 -v ${world_volume}:/opt/${image_name}/world \
