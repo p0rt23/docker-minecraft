@@ -6,23 +6,23 @@
 # https://aikar.co/2018/07/02/tuning-the-jvm-g1gc-garbage-collector-flags-for-minecraft/
 cmd="java -Xms4G -Xmx4G -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:MaxGCPauseMillis=100 -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=90 -XX:G1NewSizePercent=50 -XX:G1MaxNewSizePercent=80 -XX:G1MixedGCLiveThresholdPercent=35 -XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled -jar server.jar nogui"
 
-if [ $1="start" ]
+if [ "$1" == "start" ]
 then
     tmux new-session -s minecraft -d "$cmd"
 fi
 
-if [ $1="stop" ]
+if [ "$1" == "stop" ]
 then
     tmux send-keys -t minecraft 'say SERVER SHUTTING DOWN. Saving map...' C-m 'save-all' C-m 'stop' C-m
     sleep 15
 fi
 
-if [ $1="save-on" ]
+if [ "$1" == "save-on" ]
 then
     tmux send-keys -t minecraft 'save-on' C-m 'say Backup complete!' C-m
 fi
 
-if [ $1="save-off" ]
+if [ "$1" == "save-off" ]
 then
     tmux send-keys -t minecraft 'say Backup process starting...' C-m 'save-off' C-m 'save-all' C-m
 fi
