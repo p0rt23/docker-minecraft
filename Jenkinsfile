@@ -14,6 +14,7 @@ node {
         container_name = image_name
         port           = 25565
         restart        = "always"
+        docker_cmd     = "run"
         
     }
     else {
@@ -21,10 +22,10 @@ node {
         container_name = "${image_name}-develop" 
         port           = 25566
         restart        = "no"
+        docker_cmd     = "create"
     }
 
-    world_volume   = "${container_name}-world"
-    backups_volume = "${container_name}-backups"
+    world_volume = "${container_name}-world"
  
     stage('Build') {
         checkout scm
@@ -41,12 +42,11 @@ node {
             
         }
         sh """
-            docker run \
+            docker ${docker_cmd} \
                 -d \
                 --restart ${restart} \
                 --name ${container_name} \
-                -v /home/docker/volumes/${world_volume}:/opt/${image_name}/world \
-                -v /home/docker/volumes/${backups_volume}:/opt/${image_name}/backups \
+                -v ${world_volume}:/opt/${image_name}/world \
                 -p ${port}:25565 \
                 p0rt23/${image_name}:${image_tag}
         """
