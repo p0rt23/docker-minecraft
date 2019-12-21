@@ -9,6 +9,7 @@ RUN apk update && apk add openjdk8 && apk add tmux
 
 COPY ./${SERVER_FILE} /${WORKING}/
 COPY ./minecraft/* /${WORKING}/
+COPY ./minecraft/datapacks /${WORKING}/datapacks
 
 RUN chmod +x /${WORKING}/*.sh
 
