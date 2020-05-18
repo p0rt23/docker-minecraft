@@ -49,7 +49,7 @@ node {
                 --restart ${restart} \
                 --name ${container_name} \
                 -v ${world_volume}:/opt/${image_name}/world \
-                -v ${world_logs}:/opt/${image_name}/logs \
+                -v ${logs_volume}:/opt/${image_name}/logs \
                 -p ${port}:25565 \
                 p0rt23/${image_name}:${image_tag}
         """
