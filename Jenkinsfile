@@ -26,7 +26,8 @@ node {
         detatched      = ""
     }
 
-    world_volume = "${container_name}-world"
+    def world_volume = "${container_name}-world"
+    def logs_volume  = "${container_name}-logs"
  
     stage('Build') {
         checkout scm
@@ -48,6 +49,7 @@ node {
                 --restart ${restart} \
                 --name ${container_name} \
                 -v ${world_volume}:/opt/${image_name}/world \
+                -v ${world_logs}:/opt/${image_name}/logs \
                 -p ${port}:25565 \
                 p0rt23/${image_name}:${image_tag}
         """
