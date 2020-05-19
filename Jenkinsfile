@@ -48,6 +48,7 @@ node {
                 ${detatched} \
                 --restart ${restart} \
                 --name ${container_name} \
+                --network="minecraft" \
                 -v ${world_volume}:/opt/${image_name}/world \
                 -v ${logs_volume}:/opt/${image_name}/logs \
                 -p ${port}:25565 \
