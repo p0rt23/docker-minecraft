@@ -7,7 +7,7 @@ node {
     // https://www.minecraft.net/en-us/download/server/
     def image_name     = 'minecraft'
     def version        = '1.16'
-    def download_url   = 'https://launcher.mojang.com/v1/objects/bb2b6b1aefcd70dfd1892149ac3a215f6c636b07/server.jar'
+    def download_url   = 'https://launcher.mojang.com/v1/objects/7361a24df069a06748844cc7483c35d4abd2d80c/server.jar'
     
     if (env.BRANCH_NAME == 'master') {
         image_tag      = version
