@@ -5,7 +5,10 @@ ENV SERVER_FILE="server.jar"
 ENV WORKING="opt/${IMAGE_NAME}"
 WORKDIR /${WORKING}
 
-RUN apk update && apk add openjdk16 && apk add tmux
+RUN apk update && apk add tmux
+RUN apk add \
+    --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
+    openjdk16
 
 COPY ./${SERVER_FILE} /${WORKING}/
 COPY ./minecraft/ /${WORKING}/
