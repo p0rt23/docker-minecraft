@@ -7,7 +7,7 @@ WORKDIR /${WORKING}
 
 RUN apk update && apk add tmux
 RUN apk add \
-    --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
+    --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/community \
     openjdk17
 
 COPY ./${SERVER_FILE} /${WORKING}/
