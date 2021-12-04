@@ -8,7 +8,7 @@ WORKDIR /${WORKING}
 RUN apk update && apk add tmux
 RUN apk add \
     --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
-    openjdk16
+    openjdk17
 
 COPY ./${SERVER_FILE} /${WORKING}/
 COPY ./minecraft/ /${WORKING}/
