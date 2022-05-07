@@ -4,6 +4,10 @@
 rm -rf /opt/minecraft/world/datapacks
 cp -r /opt/minecraft/datapacks/ /opt/minecraft/world/
 
+# Replace the mods folder from the docker image:
+rm -rf /opt/minecraft/world/mods
+cp -r /opt/minecraft/mods/ /opt/minecraft/world/
+
 /opt/minecraft/run-command start
 
 trap "/opt/minecraft/run-command stop" SIGINT SIGTERM
