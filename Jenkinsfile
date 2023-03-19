@@ -5,13 +5,13 @@ node {
     def restart
 
     def image_name     = 'minecraft'
-    def version        = '1.19.3'
+    def version        = '1.19.4'
     
     // https://www.minecraft.net/en-us/download/server/
     // def download_url   = 'https://launcher.mojang.com/v1/objects/c8f83c5655308435b3dcf03c06d9fe8740a77469/server.jar'
     
     // https://fabricmc.net/use/server/
-    def download_url   = 'https://meta.fabricmc.net/v2/versions/loader/1.19.3/0.14.11/0.11.1/server/jar'
+    def download_url   = 'https://meta.fabricmc.net/v2/versions/loader/1.19.4/0.14.17/0.11.2/server/jar'
     
     if (env.BRANCH_NAME == 'master') {
         image_tag      = version
