@@ -36,7 +36,7 @@ node {
     stage('Build') {
         checkout scm
         sh "curl -L -o server.jar ${download_url}"
-        sh "docker build --load -t p0rt23/${image_name}:${image_tag} ."
+        sh "docker build --driver=docker -t p0rt23/${image_name}:${image_tag} ."
     }
 
     stage('Deploy') {
