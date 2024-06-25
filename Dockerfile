@@ -5,8 +5,8 @@ ENV SERVER_FILE="server.jar"
 ENV WORKING="opt/${IMAGE_NAME}"
 WORKDIR /${WORKING}
 
-RUN yum update -y && \
-  yum install -y tmux
+RUN microdnf update -y && \
+  microdnf install -y tmux
 
 COPY ./${SERVER_FILE} /${WORKING}/
 COPY ./minecraft/ /${WORKING}/
