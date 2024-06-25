@@ -6,32 +6,26 @@
 # https://fabricmc.net/use/server/
 # java -Xmx2G -jar fabric-server-mc.1.18.2-loader.0.13.3-launcher.0.10.2.jar nogui
 
-# openjdk17 has a broken symlink for /usr/bin/java
-java="/usr/lib/jvm/java-17-openjdk/jre/bin/java"
+java="${JAVA_HOME}/bin/java"
 
-# https://aikar.co/2018/07/02/tuning-the-jvm-g1gc-garbage-collector-flags-for-minecraft/
-args="-Xmx4G -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:MaxGCPauseMillis=100 -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=90 -XX:G1NewSizePercent=50 -XX:G1MaxNewSizePercent=80 -XX:G1MixedGCLiveThresholdPercent=35 -XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled"
+# https://github.com/Mukul1127/Minecraft-Performance-Flags-Benchmarks?tab=readme-ov-file#example-java-arguments
+args="-Xms8G -Xmx8G -XX:+UnlockExperimentalVMOptions -XX:+UnlockDiagnosticVMOptions -XX:+AlwaysActAsServerClassMachine -XX:+AlwaysPreTouch -XX:+DisableExplicitGC -XX:AllocatePrefetchStyle=3 -XX:NmethodSweepActivity=1 -XX:ReservedCodeCacheSize=400M -XX:NonNMethodCodeHeapSize=12M -XX:ProfiledCodeHeapSize=194M -XX:NonProfiledCodeHeapSize=194M -XX:-DontCompileHugeMethods -XX:+PerfDisableSharedMem -XX:+UseFastUnorderedTimeStamps -XX:+UseCriticalJavaThreadPriority -XX:+EagerJVMCI -XX:+UseG1GC -XX:MaxGCPauseMillis=37 -XX:G1HeapRegionSize=16M -XX:G1NewSizePercent=23 -XX:G1ReservePercent=20 -XX:SurvivorRatio=32 -XX:G1MixedGCCountTarget=3 -XX:G1HeapWastePercent=20 -XX:InitiatingHeapOccupancyPercent=10 -XX:G1RSetUpdatingPauseTimePercent=0 -XX:MaxTenuringThreshold=1 -XX:G1SATBBufferEnqueueingThresholdPercent=30 -XX:G1ConcMarkStepDurationMillis=5.0 -XX:G1ConcRefinementServiceIntervalMillis=150 -XX:GCTimeRatio=99"
 
 cmd="$java $args -jar server.jar nogui"
 
-if [ "$1" == "start" ]
-then
-    tmux new-session -s minecraft -d "$cmd"
+if [ "$1" == "start" ]; then
+	tmux new-session -s minecraft -d "$cmd"
 fi
 
-if [ "$1" == "stop" ]
-then
-    tmux send-keys -t minecraft 'say SERVER SHUTTING DOWN. Saving map...' C-m 'save-all' C-m 'stop' C-m
-    sleep 30
+if [ "$1" == "stop" ]; then
+	tmux send-keys -t minecraft 'say SERVER SHUTTING DOWN. Saving map...' C-m 'save-all' C-m 'stop' C-m
+	sleep 30
 fi
 
-if [ "$1" == "save-on" ]
-then
-    tmux send-keys -t minecraft 'save-on' C-m 'say Backup complete!' C-m
+if [ "$1" == "save-on" ]; then
+	tmux send-keys -t minecraft 'save-on' C-m 'say Backup complete!' C-m
 fi
 
-if [ "$1" == "save-off" ]
-then
-    tmux send-keys -t minecraft 'say Backup process starting...' C-m 'save-off' C-m 'save-all' C-m
+if [ "$1" == "save-off" ]; then
+	tmux send-keys -t minecraft 'say Backup process starting...' C-m 'save-off' C-m 'save-all' C-m
 fi
-
